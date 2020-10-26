@@ -11,6 +11,11 @@ Change Log
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[2.0.0] - 2020-11-05
+~~~~~~~~~~~~~~~~~~~~
+
+* Deprecate namespaced waffle classes
+
 [1.2.0] - 2020-11-05
 ~~~~~~~~~~~~~~~~~~~~
 
