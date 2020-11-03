@@ -1,34 +1,24 @@
 """
-Waffle classes in the context of edx-platform and other IDAs.
+This module contains legacy code for backward compatibility. Waffle flag and switch objects previously required the
+creation of namespace objects. The namespace features were all moved to the WaffleSwitch/Flag classes.
 
-Includes namespacing and caching for waffle flags.
+To upgrade your code, use the following guidelines. Where previously you had::
 
-Usage:
+    SOME_NAMESPACE = WaffleSwitchNamespace("some_namespace")
+    SOME_SWITCH = WaffleSwitch(SOME_NAMESPACE, "some_switch", module_name=__name__)
 
-For Waffle Flags, first set up the namespace, and then create flags using the
-namespace.  For example::
+You should now write::
 
-   WAFFLE_FLAG_NAMESPACE = WaffleFlagNamespace(name='my_namespace')
-   SOME_FLAG = WaffleFlag(WAFFLE_FLAG_NAMESPACE, 'some_feature', __name__)
+    SOME_SWITCH = WaffleSwitch("some_namespace.some_switch", module_name=__name__)
 
-You can check theis flag in code using the following::
+And similarly for waffle flags, replace::
 
-    SOME_FLAG.is_enabled()
+    SOME_NAMESPACE = WaffleFlagNamespace("some_namespace", log_prefix="some_namespace")
+    SOME_FLAG = WaffleFlag(SOME_NAMESPACE, "some_flag", module_name=__name__)
 
-To test these WaffleFlags, see testutils.py.
+by::
 
-In the above examples, you will use Django Admin "waffle" section to configure
-for a flag named: my_namespace.some_course_feature
-
-For Waffle Switches, follow the example above for WaffleFlags, but instead use the WaffleSwitchNamespace and
-WaffleSwitch classes.
-
-For long-lived flags, you may want to change the default for devstack, sandboxes,
-or new Open edX releases. For help with this, see:
-openedx/core/djangoapps/waffle_utils/docs/decisions/0001-refactor-waffle-flag-default.rst
-
-Also see ``WAFFLE_FLAG_CUSTOM_ATTRIBUTES`` and docstring for _set_waffle_flag_attribute
-for temporarily instrumenting/monitoring waffle flag usage.
+    SOME_FLAG = WaffleFlag("some_namespace.some_flag", module_name=__name__, log_prefix="some_namespace")
 """
 import warnings
 from abc import ABC
