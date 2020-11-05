@@ -3,8 +3,9 @@ Unit tests for waffle classes.
 """
 
 from django.test import TestCase
-
-from edx_toggles.toggles import WaffleFlag, WaffleSwitch
+# TODO import from edx_toggles.toggles once we remove the legacy classes from the exposed API
+from edx_toggles.toggles.internal.waffle.flag import WaffleFlag
+from edx_toggles.toggles.internal.waffle.switch import WaffleSwitch
 
 
 class WaffleFlagTests(TestCase):

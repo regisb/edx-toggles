@@ -11,6 +11,11 @@ Change Log
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[1.2.0] - 2020-11-05
+~~~~~~~~~~~~~~~~~~~~
+
+* Start the deprecation process of the waffle namespace classes: the legacy classes are still used by default, but trigger deprecation warnings.
+
 [1.1.1] - 2020-10-27
 ~~~~~~~~~~~~~~~~~~~~
 
